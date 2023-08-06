@@ -11,6 +11,8 @@ export class SuffixBnPipe implements PipeTransform {
 
     if (Math.abs(value) >= 1e9) {
       return (value / 1e9).toFixed(2) + ' Bn';
+    } else if (Math.abs(value) >= 1e6) {
+      return (value / 1e6).toFixed(2) + ' Mn';
     }
 
     return value.toString();

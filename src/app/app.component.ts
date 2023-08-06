@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
   public chartConfigs: IChartConfig = {
     top: 20,
     right: 50,
-    bottom: 60,
+    bottom: 80,
     left: 60,
     height: 450,
     width: 1400,
