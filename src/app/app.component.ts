@@ -79,7 +79,7 @@ export class AppComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize() {
     if (window.screen.width < 700) {
-      this.chartConfigs.width = window.screen.width - this.chartConfigs.right;
+      this.chartConfigs.width = window.screen.width;
       this.chartConfigs.isSmallScreen = true;
     } else {
       this.chartConfigs.width = 1400;

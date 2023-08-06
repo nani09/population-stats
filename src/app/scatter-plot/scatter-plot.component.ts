@@ -96,7 +96,10 @@ export class ScatterPlotComponent implements OnInit, OnDestroy {
 
       const scaleX = scaleLinear()
         .domain([0, max(data, (d) => d.populationDensity)])
-        .range([0, this.configs.width]);
+        .range([
+          0,
+          this.configs.width - this.configs.left - this.configs.right,
+        ]);
       const xAxisLabels = range(scaleX.domain()[1]).filter(
         (el) => el % 200 === 0
       );
@@ -159,7 +162,10 @@ export class ScatterPlotComponent implements OnInit, OnDestroy {
         .append('text')
         .attr('transform', 'rotate(0)')
         .attr('y', this.configs.height + this.configs.top + 20)
-        .attr('x', this.configs.width / 2)
+        .attr(
+          'x',
+          (this.configs.width - this.configs.left - this.configs.right) / 2
+        )
         .attr('dx', '1em')
         .style('font-family', 'cursive')
         .style('text-anchor', 'middle')
@@ -201,8 +207,8 @@ export class ScatterPlotComponent implements OnInit, OnDestroy {
         .data(['Europe and Africa', 'Asia and Pacific', 'America'])
         .enter()
         .append('circle')
-        .attr('cx', (_d, i) => i * (this.configs.isSmallScreen ? 120 : 200))
-        .attr('r', 10)
+        .attr('cx', (_d, i) => i * (this.configs.isSmallScreen ? 120 : 160))
+        .attr('r', 6)
         .style('fill', (d) =>
           d === 'Europe and Africa'
             ? this.configs.colorsArray[0]
@@ -217,10 +223,10 @@ export class ScatterPlotComponent implements OnInit, OnDestroy {
         .enter()
         .append('text')
         .text((d) => d)
-        .attr('x', (_d, i) => i * (this.configs.isSmallScreen ? 120 : 200) + 20)
+        .attr('x', (_d, i) => i * (this.configs.isSmallScreen ? 120 : 160) + 15)
         .attr('text-anchor', 'left')
         .style('alignment-baseline', 'middle')
-        .style('font-size', this.configs.isSmallScreen ? '10px' : '16px');
+        .style('font-size', this.configs.isSmallScreen ? '10px' : '14px');
     }
   }
 }
