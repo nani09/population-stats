@@ -199,7 +199,7 @@ export class ScatterPlotComponent implements OnInit, OnDestroy {
         .append('g')
         .attr(
           'transform',
-          `translate(0,${this.configs.height + this.configs.bottom - 10})`
+          `translate(0,${this.configs.height + this.configs.bottom * 0.6})`
         );
 
       legends
@@ -224,6 +224,15 @@ export class ScatterPlotComponent implements OnInit, OnDestroy {
         .append('text')
         .text((d) => d)
         .attr('x', (_d, i) => i * (this.configs.isSmallScreen ? 120 : 160) + 15)
+        .attr('text-anchor', 'left')
+        .style('alignment-baseline', 'middle')
+        .style('font-size', this.configs.isSmallScreen ? '10px' : '14px');
+
+      legends
+        .append('text')
+        .text('Bubble size indicates country population')
+        .attr('x', 0)
+        .attr('y', 30)
         .attr('text-anchor', 'left')
         .style('alignment-baseline', 'middle')
         .style('font-size', this.configs.isSmallScreen ? '10px' : '14px');
