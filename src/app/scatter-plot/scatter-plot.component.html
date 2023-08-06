@@ -1,0 +1,20 @@
+
+<div class="filter-container">
+    <form [formGroup]="yearForm">
+        <label for="Year"> Year </label> 
+        <select *ngIf="years.length" formControlName="yearFormControl" >
+            <option *ngFor="let year of years"> {{year}}</option>
+        </select>
+    </form>
+</div>
+<div [ngClass]="{'adjust-center': this.configs?.isSmallScreen}">
+    <div class="population">
+        <div>World population <br> ({{selectedYear}})</div> 
+        <div class="count-style">{{this.worldPopulation | suffixBn}}</div> 
+    </div>
+</div>
+ <p class="title"> {{this.configs?.title}}</p>
+<svg style="margin-bottom: 10;"></svg>
+
+<div class="tooltip">
+</div>

@@ -1,0 +1,53 @@
+select{
+    width: 12em;
+    font-family: system-ui;
+}
+
+.title{
+  font-family: system-ui;
+  padding-left: 2em;
+}
+
+ .tooltip {
+  transition: all 0.5s ease;
+    background-color: rgb(47 32 32);
+    color: #fff;
+    border-radius: 6px;
+    padding: 5px 0;
+    opacity: 0;
+    width: 15em;
+    padding-left: 15px;
+    font-family: monospace;
+    font-style: italic;
+  }
+  
+  .filter-container{
+    background: #dedede;
+    text-align: center;
+    padding: 1.2em
+  }
+
+  .filter-container label {
+    font-weight: 600;
+    color: #114c4c;
+  }
+
+  .population{
+    width: 10em;
+    padding: 1em;
+    margin: 2em;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border: solid 1px #8989;
+  }
+
+  .count-style {
+    padding-top: 0.5em;
+    font-weight: 600;
+    font-size: 1.5em;
+  }
+
+  .adjust-center{
+    display: flex;
+    justify-content: center;
+  }
+ 
