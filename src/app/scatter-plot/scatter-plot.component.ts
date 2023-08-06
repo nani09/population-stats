@@ -69,7 +69,6 @@ export class ScatterPlotComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.push(dataSubscription);
-    // this.subscriptions.push(configSubscription);
     this.subscriptions.push(formSubscription);
   }
 
@@ -117,6 +116,7 @@ export class ScatterPlotComponent implements OnInit, OnDestroy {
         select('.tooltip')
           .html(
             `<span><b>Country</b> : ${d.country}</span><br>
+            <span><b>Region</b> : ${d.region}</span><br>
             <span><b>Population</b> : ${d.population}</span><br>
             <span><b>Density</b> : ${d.populationDensity}</span><br>
             <span><b>Growth rate</b> : ${d.populationGrowthRate}</span><br>`
@@ -132,6 +132,14 @@ export class ScatterPlotComponent implements OnInit, OnDestroy {
         const circle = event.target as SVGRectElement;
         this.renderer.setStyle(circle, 'opacity', '1');
         select('.tooltip').style('display', 'none');
+      };
+
+      const setColor = (d: IDataRow) => {
+        return d.region === 'Europe and Africa'
+          ? this.configs.colorsArray[0]
+          : d.region === 'Asia and Pacific'
+          ? this.configs.colorsArray[1]
+          : this.configs.colorsArray[2];
       };
 
       svg
@@ -170,9 +178,9 @@ export class ScatterPlotComponent implements OnInit, OnDestroy {
         .attr('cx', (d) => x(d.populationDensity))
         .attr('cy', (d) => y(d.populationGrowthRate))
         .attr('r', (d) => scaleRadius(d.population))
+        .style('fill', setColor)
         .on('mouseover', mouseover)
         .on('mouseleave', mouseleave);
-      // .on('mouseleave', mouseleave);
     }
   }
 }

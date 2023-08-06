@@ -8,6 +8,7 @@ export interface IDataRow {
   population: number;
   populationDensity: number;
   populationGrowthRate: number;
+  region: string;
 }
 
 export interface IChartConfig {
@@ -19,6 +20,7 @@ export interface IChartConfig {
   left: number;
   title?: string;
   isSmallScreen?: boolean;
+  colorsArray?: string[];
 }
 
 export interface IYearData {
@@ -40,6 +42,7 @@ export class AppComponent implements OnInit {
     height: 450,
     width: 1400,
     title: 'Population Growth vs Density Correlation',
+    colorsArray: ['#ffda24e3', '#1399fc', '#c899f3'],
   };
 
   constructor(private scatterPlotService: ScatterPlotService) {}
@@ -49,20 +52,19 @@ export class AppComponent implements OnInit {
     this.scatterPlotService.setChartConfigs(this.chartConfigs);
     const rowsData = {};
     csv('../assets/population.csv').then((data) => {
+      console.log(data);
       data.forEach((el) => {
-        const growthRate = +el[' Population_Growth_Rate '].replace(
+        const growthRate = +el['Population_Growth_Rate'].replace(
           /\D+\.?\D+/g,
           ''
         );
-        if (!growthRate) {
-          return;
-        }
         const obj = {
           country: el['Country'],
-          population: +el[' Population (000s) '].split(',').join(''),
-          populationDensity: +el[' Population_Density '],
+          population: +el['Population (000s)'].split(',').join(''),
+          populationDensity: +el['Population_Density'],
           populationGrowthRate: growthRate,
           year: +el['Year'],
+          region: el['Region'],
         } as IDataRow;
         if (rowsData[obj.year]) {
           rowsData[obj.year].push(obj);
